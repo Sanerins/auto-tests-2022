@@ -14,25 +14,29 @@ import com.example.utils.User;
 public interface Authorized {
     User user = new User();
 
-    @BeforeAll
-    static void authorize() throws IOException {
+    static void createUser() throws IOException {
         //Создайте credentials.txt перед запуском
         //1 строка - логин
         //2 строка - пароль
+        BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
+        user.login = reader.readLine();
+        user.password = reader.readLine();
+    }
+
+    @BeforeAll
+    static void authorize() throws IOException {
         createUser();
-        LoginPage.openPage();
-        LoginPage.login(user);
+        LoginPage page = new LoginPage();
+        page.openPage().checkOpened().login(user).checkOpened();
     }
 
     @AfterAll
     static void logOff() {
-        FeedPage.openPage();
-        FeedPage.logOff();
-    }
-
-    static void createUser() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
-        user.login = reader.readLine();
-        user.password = reader.readLine();
+        FeedPage page = new FeedPage();
+        if(FeedPage.isOpen()) {
+            page.logOff().checkOpened();
+        } else {
+            page.openPage().checkOpened().logOff().checkOpened();
+        }
     }
 }

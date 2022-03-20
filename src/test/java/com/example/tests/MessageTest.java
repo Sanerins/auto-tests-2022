@@ -12,10 +12,12 @@ public class MessageTest implements Authorized {
 
     @Test
     public void openMessages() {
-        FeedPage.openPage();
-        $(By.xpath("//div[@id='msg_toolbar_button']")).click();
-        if (!MessagesPage.isOpen()) {
-            throw new UnsupportedOperationException();
+        FeedPage page = new FeedPage();
+        if(!FeedPage.isOpen()) {
+            System.err.println("The page provided wasn't a main page");
+            assert(false);
+        } else {
+            page.openMessages().checkOpened();
         }
     }
 
