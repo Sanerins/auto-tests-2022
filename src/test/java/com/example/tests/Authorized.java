@@ -19,6 +19,9 @@ public interface Authorized {
 
     @BeforeAll
     static void authorize() throws IOException {
+        //Создайте credentials.txt перед запуском
+        //1 строка - логин
+        //2 строка - пароль
         createUser();
         open("https://ok.ru");
         $(By.id("field_email")).setValue(user.login);
