@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class FeedPage {
-    public static String url = "https://ok.ru";
+    public static String url = "https://ok.ru/feed";
 
     public FeedPage openPage() {
         open(url);
@@ -34,8 +34,13 @@ public class FeedPage {
     }
 
     public MessagesPage openMessages() {
-        $(By.xpath("//div[@id='msg_toolbar_button']")).click();
+        $(By.id("msg_toolbar_button")).click();
         return new MessagesPage();
+    }
+
+    public FriendsPage openFriends() {
+        $(By.id("hook_Block_HeaderTopFriendsInToolbar")).click();
+        return new FriendsPage();
     }
 
     public static boolean isOpen() {
@@ -43,6 +48,6 @@ public class FeedPage {
     }
 
     public static SelenideElement locator() {
-        return $(By.id("viewImageLinkId"));
+        return $(By.xpath("//div[contains(@data-l, 't,filter')]"));
     }
 }
