@@ -1,5 +1,6 @@
 package com.example.tests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -21,24 +22,16 @@ public class FeedTest implements Authorized {
     @Test
     public void openMessages() {
         FeedPage page = new FeedPage();
-        if(!FeedPage.isOpen()) {
-            System.err.println("The page provided wasn't a main page");
-            assert(false);
-        } else {
-            page.openMessages().checkOpened();
-        }
+        Assertions.assertTrue(FeedPage.isOpen(), "The page provided wasn't a main page");
+        page.openMessages().checkOpened();
     }
 
     @Test
     public void findNonExistentFriendTest() {
         //Пока что просто открывает друзей и ищет пивня
         FeedPage page = new FeedPage();
-        if(!FeedPage.isOpen()) {
-            System.err.println("The page provided wasn't a main page");
-            assert(false);
-        } else {
-            page.openFriends().checkOpened().searchPerson("Piven").checkFriendsNotFound();
-        }
+        Assertions.assertTrue(FeedPage.isOpen(), "The page provided wasn't a main page");
+        page.openFriends().checkOpened().searchPerson("Пивень").checkFriendsNotFound();
     }
 
 }
