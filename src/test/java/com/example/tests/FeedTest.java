@@ -28,7 +28,6 @@ public class FeedTest implements Authorized {
 
     @Test
     public void findNonExistentFriendTest() {
-        //Пока что просто открывает друзей и ищет пивня
         FeedPage page = new FeedPage();
         Assertions.assertTrue(FeedPage.isOpen(), "The page provided wasn't a main page");
         page.openFriends().checkOpened().searchPerson("Пивень").checkFriendsNotFound();
