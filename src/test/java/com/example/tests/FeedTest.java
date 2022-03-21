@@ -16,21 +16,26 @@ public class FeedTest implements Authorized {
 
     @BeforeEach
     public void openFeedPage() {
-        new FeedPage().openPage();
+        new FeedPage()
+                .openPage();
     }
 
     @Test
     public void openMessages() {
-        FeedPage page = new FeedPage();
-        Assertions.assertTrue(FeedPage.isOpen(), "The page provided wasn't a main page");
-        page.openMessages().checkOpened();
+        new FeedPage()
+                .checkOpened()
+                .openMessages()
+                .checkOpened();
     }
 
     @Test
     public void findNonExistentFriendTest() {
-        FeedPage page = new FeedPage();
-        Assertions.assertTrue(FeedPage.isOpen(), "The page provided wasn't a main page");
-        page.openFriends().checkOpened().searchPerson("Пивень").checkFriendsNotFound();
+        new FeedPage()
+                .checkOpened()
+                .openFriends()
+                .checkOpened()
+                .searchPerson("Пивень")
+                .checkFriendsNotFound();
     }
 
 }

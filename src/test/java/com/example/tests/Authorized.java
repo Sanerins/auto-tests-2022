@@ -26,17 +26,19 @@ public interface Authorized {
     @BeforeAll
     static void authorize() throws IOException {
         createUser();
-        LoginPage page = new LoginPage();
-        page.openPage().checkOpened().login(user).checkOpened();
+        new LoginPage()
+                .openPage()
+                .checkOpened()
+                .login(user)
+                .checkOpened();
     }
 
     @AfterAll
     static void logOff() {
-        FeedPage page = new FeedPage();
-        if(FeedPage.isOpen()) {
-            page.logOff().checkOpened();
-        } else {
-            page.openPage().checkOpened().logOff().checkOpened();
-        }
+        new FeedPage()
+                .openPage()
+                .checkOpened()
+                .logOff()
+                .checkOpened();
     }
 }
