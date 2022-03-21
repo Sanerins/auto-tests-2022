@@ -1,5 +1,6 @@
 package com.example.tests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
@@ -12,6 +13,11 @@ import static com.codeborne.selenide.Selenide.sleep;
 
 public class FeedTest implements Authorized {
 
+    @BeforeEach
+    public void openFeedPage() {
+        new FeedPage().openPage();
+    }
+
     @Test
     public void openMessages() {
         FeedPage page = new FeedPage();
@@ -21,7 +27,6 @@ public class FeedTest implements Authorized {
         } else {
             page.openMessages().checkOpened();
         }
-        page.openPage();
     }
 
     @Test
@@ -32,9 +37,8 @@ public class FeedTest implements Authorized {
             System.err.println("The page provided wasn't a main page");
             assert(false);
         } else {
-            page.openFriends().checkOpened().searchPerson("Piven").checkOpened();
+            page.openFriends().checkOpened().searchPerson("Piven").checkFriendsNotFound();
         }
-        page.openPage();
     }
 
 }

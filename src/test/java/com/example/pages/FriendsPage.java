@@ -21,7 +21,14 @@ public class FriendsPage {
     }
 
     public FriendsPage searchPerson(String input) {
-        $(By.xpath("//input[@accesskey='s']")).setValue(input).pressEnter();
+        SelenideElement elem = $(By.xpath("//input[@accesskey='s']"));
+        char[] chars = input.toCharArray();
+        for(char letter : chars) {
+            elem.append(String.valueOf(letter));
+            Selenide.sleep(10);
+        }
+        elem.pressEnter();
+        Selenide.sleep(100);
         return this;
     }
 
