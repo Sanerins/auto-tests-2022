@@ -1,35 +1,30 @@
 package com.example.pages;
 
-import org.openqa.selenium.By;
-
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class MessagesPage {
     public static String url = "https://ok.ru/messages";
+    private static final SelenideElement messageButton = $(By.id("msg_toolbar_button"));
 
-    public MessagesPage openPage() {
+    public MessagesPage() {
+        messageButton.shouldBe(Condition.visible);
+    }
+
+    public static MessagesPage openPage() {
         open(url);
-        return this;
+        return new MessagesPage();
     }
 
     public static String getURL() {
         return url;
     }
 
-    public MessagesPage checkOpened() {
-        locator().shouldBe(Condition.visible);
-        return this;
-    }
-
     public static boolean isOpen() {
-        return locator().exists();
-    }
-
-    public static SelenideElement locator() {
-        return $(By.id("msg_toolbar_button"));
+        return messageButton.isDisplayed();
     }
 }

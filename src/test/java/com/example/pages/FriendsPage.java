@@ -1,44 +1,39 @@
 package com.example.pages;
 
-import org.openqa.selenium.By;
-
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
 
 public class FriendsPage {
-    public FriendsPage checkOpened() {
-        locator().shouldBe(Condition.visible);
-        return this;
+    public static String url = "https://ok.ru/friends";
+    private static final SelenideElement friendsSearchField = $(By.xpath("//input[@accesskey='s']"));
+
+    public FriendsPage() {
+        friendsSearchField.shouldBe(Condition.visible);
+    }
+
+    public FriendsPage openPage() {
+        open(url);
+        return new FriendsPage();
     }
 
     public static boolean isOpen() {
-        return locator().exists();
+        return friendsSearchField.isDisplayed();
     }
 
-    public FriendsPage searchPerson(String input) {
-        SelenideElement elem = $(By.xpath("//input[@accesskey='s']"));
+    public SearchFriendsPage searchPerson(String input) {
         char[] chars = input.toCharArray();
-        for(char letter : chars) {
-            elem.append(String.valueOf(letter));
-            Selenide.sleep(10);
+        for (char letter : chars) {
+            friendsSearchField.append(String.valueOf(letter));
+            Selenide.sleep(50);
         }
-        elem.pressEnter();
+        friendsSearchField.pressEnter();
         Selenide.sleep(100);
-        return this;
-    }
-
-    public FriendsPage checkFriendsNotFound() {
-        $(By.className("stub-empty")).shouldBe(Condition.visible);
-        return this;
-    }
-
-    public static SelenideElement locator() {
-        return $(By.className("friend-search-w__g4cu4"));
+        return new SearchFriendsPage();
     }
 }
 
