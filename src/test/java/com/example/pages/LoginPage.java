@@ -1,31 +1,33 @@
 package com.example.pages;
 
-import java.util.concurrent.ExecutionException;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.NotFoundException;
-
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.ex.ElementNotFound;
 import com.example.utils.User;
-import com.google.common.util.concurrent.ExecutionError;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage {
     public static String url = "https://ok.ru";
+    private static final SelenideElement loginForm = $(By.xpath("//form[contains(@class, \"login-form\")]"));
+    private static final SelenideElement emailField = loginForm.find(By.id("field_email"));
+    private static final SelenideElement passwordField = loginForm.find(By.id("field_password"));
+    private static final SelenideElement loginButton = $(By.xpath("//input[@data-l='t,sign_in']"));
 
-    public LoginPage openPage() {
+    public LoginPage() {
+        loginForm.shouldBe(Condition.visible);
+    }
+
+    public static LoginPage openPage() {
         open(url);
-        return this;
+        return new LoginPage();
     }
 
     public FeedPage login(User user) {
-        $(By.id("field_email")).setValue(user.login);
-        $(By.id("field_password")).setValue(user.password);
-        $(By.xpath("//input[@data-l='t,sign_in']")).click();
+        emailField.setValue(user.getLogin());
+        passwordField.setValue(user.getPassword());
+        loginButton.click();
         return new FeedPage();
     }
 
@@ -33,16 +35,7 @@ public class LoginPage {
         return url;
     }
 
-    public LoginPage checkOpened() {
-        locator().shouldBe(Condition.visible);
-        return this;
-    }
-
     public static boolean isOpen() {
-        return locator().exists();
-    }
-
-    public static SelenideElement locator() {
-        return $(By.xpath("//a[@data-l='t,login_tab']"));
+        return loginForm.isDisplayed();
     }
 }
