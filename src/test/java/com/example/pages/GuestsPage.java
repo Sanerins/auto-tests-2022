@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class GuestsPage {
     private static final String url = "https://ok.ru/guests";
-    private static final SelenideElement guestsHeader = $(By.id("listBlockPanelUserGuests"));
+    private static final SelenideElement guestsHeader = $(By.id("hook_Block_UserGuests"));
 
     public GuestsPage() {
         guestsHeader.shouldBe(Condition.visible);
