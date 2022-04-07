@@ -43,8 +43,7 @@ public abstract class BaseTest {
     }
 
     protected static void logOff() {
-        new FeedPage()
-                .openPage()
+        FeedPage.openPage()
                 .logout();
     }
 

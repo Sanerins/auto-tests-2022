@@ -30,7 +30,7 @@ public class FeedPage {
         feedNavBar.shouldBe(Condition.visible);
     }
 
-    public FeedPage openPage() {
+    public static FeedPage openPage() {
         open(url);
         return new FeedPage();
     }
