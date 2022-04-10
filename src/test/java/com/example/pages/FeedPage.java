@@ -1,11 +1,13 @@
 package com.example.pages;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
-
 import org.openqa.selenium.By;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
 
@@ -25,6 +27,16 @@ public class FeedPage {
             = $(By.xpath("//*[contains(@class, 'feed-w')][1]//*[@data-like-icon]/parent::*"));
     private static final SelenideElement likeCount
             = $(By.xpath("//*[contains(@class, 'feed-w')][1]//*[@data-like-icon]//*[contains(@class, 'widget_count')]"));
+    private static final SelenideElement openPostingMenuBtn
+            = $(By.xpath("//*[contains(@data-l, 't,feed.posting.ui.input')]"));
+    private static final SelenideElement inputPostTextForm
+            = $(By.xpath("//*[contains(@class, 'posting_itx ')]"));
+    private static final SelenideElement submitPostBtn
+            = $(By.xpath("//*[contains(@data-l, 't,button.submit')]"));
+    private static final SelenideElement bestBackground
+            = $(By.xpath("//*[contains(@class, 'posting_cp_i js-color-picker-i js-color-picker-i-103')]"));
+    private static final SelenideElement firstPostFromFeed
+            = $(By.xpath("//*[contains(@class, 'feed-list')]//*[contains(@class, 'media-text_cnt_tx')]"));;
 
     public FeedPage() {
         feedNavBar.shouldBe(Condition.visible);
@@ -92,5 +104,19 @@ public class FeedPage {
             return attributes.contains(className);
         }
         return false;
+    }
+
+    public FeedPage publishPost(String quote) {
+        openPostingMenuBtn.click();
+        inputPostTextForm.shouldBe(Condition.visible);
+        inputPostTextForm.clear();
+        inputPostTextForm.setValue(quote);
+        bestBackground.click();
+        submitPostBtn.click();
+        return this;
+    }
+
+    public boolean checkWhetherPostWithTextDisplayed(String text) {
+        return firstPostFromFeed.innerText().equals(text);
     }
 }
