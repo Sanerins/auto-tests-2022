@@ -22,7 +22,10 @@ public abstract class BaseTest {
         //1 строка - логин
         //2 строка - пароль
         BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
-        return new User(reader.readLine(), reader.readLine());
+        return User.builder()
+                .setLogin(reader.readLine())
+                .setPassword(reader.readLine())
+                .build();
     }
 
     @BeforeAll
