@@ -2,16 +2,19 @@ package com.example.tests;
 
 import com.example.pages.FeedPage;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class SearchForFriendTest extends BaseTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"Пивень", "ПивПивыч", "Пивчанский"})
+    @MethodSource("provideNonExistentFriends")
     void findNonExistentFriendTest(String nonExistentFriendName) throws IOException {
         authorize();
         assertThat(new FeedPage()
@@ -19,5 +22,13 @@ class SearchForFriendTest extends BaseTest {
                 .searchPerson(nonExistentFriendName)
                 .friendNotFound()).isTrue();
         logOff();
+    }
+
+    private static Stream<Arguments> provideNonExistentFriends() {
+        return Stream.of(
+                Arguments.of("Пивень"),
+                Arguments.of("ПивПивыч"),
+                Arguments.of("Пивчанский")
+        );
     }
 }
