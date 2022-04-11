@@ -28,7 +28,7 @@ public class FeedPage {
     private static final SelenideElement likeCount
             = $(By.xpath("//*[contains(@class, 'feed-w')][1]//*[@data-like-icon]//*[contains(@class, 'widget_count')]"));
     private static final SelenideElement openPostingMenuBtn
-            = $(By.xpath("//*[contains(@data-l, 't,feed.posting.ui.input')]"));
+            = $(By.xpath("//*[contains(@class, 'pf-head __colored-svg')]"));
     private static final SelenideElement inputPostTextForm
             = $(By.xpath("//*[contains(@class, 'posting_itx ')]"));
     private static final SelenideElement submitPostBtn
