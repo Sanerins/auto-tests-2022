@@ -9,23 +9,23 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class NotificationsPage {
-    private static final String url = "https://ok.ru/notifications";
-    private static final SelenideElement notificationsHeader = $(By.id("hook_Block_NotificationsLayerTitle"));
+    private static final String URL = "https://ok.ru/notifications";
+    private static final SelenideElement NOTIFICATIONS_HEADER = $(By.id("hook_Block_NotificationsLayerTitle"));
 
     public NotificationsPage() {
-        notificationsHeader.shouldBe(Condition.visible);
+        NOTIFICATIONS_HEADER.shouldBe(Condition.visible);
     }
 
     public static NotificationsPage openPage() {
-        open(url);
+        open(URL);
         return new NotificationsPage();
     }
 
     public static boolean isOpen() {
-        return notificationsHeader.isDisplayed();
+        return NOTIFICATIONS_HEADER.isDisplayed();
     }
 
     public static String getURL() {
-        return url;
+        return URL;
     }
 }

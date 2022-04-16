@@ -2,7 +2,7 @@ package com.example.utils;
 
 public class User {
     private String login;
-    private  String password;
+    private String password;
     private String userId = "";
 
     public User(String login, String password) {

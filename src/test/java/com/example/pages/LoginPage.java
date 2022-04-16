@@ -10,13 +10,13 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage {
     public static String url = "https://ok.ru";
-    private static final SelenideElement loginForm = $(By.xpath("//form[contains(@class, \"login-form\")]"));
-    private static final SelenideElement emailField = loginForm.find(By.id("field_email"));
-    private static final SelenideElement passwordField = loginForm.find(By.id("field_password"));
-    private static final SelenideElement loginButton = $(By.xpath("//input[@data-l='t,sign_in']"));
+    private static final SelenideElement LOGIN_FORM = $(By.xpath("//form[contains(@class, \"login-form\")]"));
+    private static final SelenideElement EMAIL_FIELD = LOGIN_FORM.find(By.id("field_email"));
+    private static final SelenideElement PASSWORD_FIELD = LOGIN_FORM.find(By.id("field_password"));
+    private static final SelenideElement LOGIN_BUTTON = $(By.xpath("//input[@data-l='t,sign_in']"));
 
     public LoginPage() {
-        loginForm.shouldBe(Condition.visible);
+        LOGIN_FORM.shouldBe(Condition.visible);
     }
 
     public static LoginPage openPage() {
@@ -25,9 +25,9 @@ public class LoginPage {
     }
 
     public FeedPage login(User user) {
-        emailField.setValue(user.getLogin());
-        passwordField.setValue(user.getPassword());
-        loginButton.click();
+        EMAIL_FIELD.setValue(user.getLogin());
+        PASSWORD_FIELD.setValue(user.getPassword());
+        LOGIN_BUTTON.click();
         return new FeedPage();
     }
 
@@ -36,6 +36,6 @@ public class LoginPage {
     }
 
     public static boolean isOpen() {
-        return loginForm.isDisplayed();
+        return LOGIN_FORM.isDisplayed();
     }
 }

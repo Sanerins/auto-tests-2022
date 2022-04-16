@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public abstract class BaseTest {
     protected static User user;
-    private static final String baseUrl = "https://ok.ru";
+    private static final String BASE_URL = "https://ok.ru";
 
     static User createUser() throws IOException {
         //Создайте credentials.txt перед запуском
@@ -31,7 +31,7 @@ public abstract class BaseTest {
     @BeforeAll
     public static void init() {
         closeWebDriver();
-        Configuration.baseUrl = baseUrl;
+        Configuration.baseUrl = BASE_URL;
         open("/");
     }
 

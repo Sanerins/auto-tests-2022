@@ -9,10 +9,10 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class MessagesPage {
     public static String url = "https://ok.ru/messages";
-    private static final SelenideElement messageButton = $(By.id("msg_toolbar_button"));
+    private static final SelenideElement MESSAGE_BUTTON = $(By.id("msg_toolbar_button"));
 
     public MessagesPage() {
-        messageButton.shouldBe(Condition.visible);
+        MESSAGE_BUTTON.shouldBe(Condition.visible);
     }
 
     public static MessagesPage openPage() {
@@ -25,6 +25,6 @@ public class MessagesPage {
     }
 
     public static boolean isOpen() {
-        return messageButton.isDisplayed();
+        return MESSAGE_BUTTON.isDisplayed();
     }
 }

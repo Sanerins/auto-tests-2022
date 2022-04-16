@@ -10,10 +10,10 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class FriendsPage {
     public static String url = "https://ok.ru/friends";
-    private static final SelenideElement friendsSearchField = $(By.xpath("//input[@accesskey='s']"));
+    private static final SelenideElement FRIENDS_SEARCH_FIELD = $(By.xpath("//input[@accesskey='s']"));
 
     public FriendsPage() {
-        friendsSearchField.shouldBe(Condition.visible);
+        FRIENDS_SEARCH_FIELD.shouldBe(Condition.visible);
     }
 
     public FriendsPage openPage() {
@@ -22,16 +22,16 @@ public class FriendsPage {
     }
 
     public static boolean isOpen() {
-        return friendsSearchField.isDisplayed();
+        return FRIENDS_SEARCH_FIELD.isDisplayed();
     }
 
     public SearchFriendsPage searchPerson(String input) {
         char[] chars = input.toCharArray();
         for (char letter : chars) {
-            friendsSearchField.append(String.valueOf(letter));
+            FRIENDS_SEARCH_FIELD.append(String.valueOf(letter));
             Selenide.sleep(50);
         }
-        friendsSearchField.pressEnter();
+        FRIENDS_SEARCH_FIELD.pressEnter();
         Selenide.sleep(100);
         return new SearchFriendsPage();
     }
