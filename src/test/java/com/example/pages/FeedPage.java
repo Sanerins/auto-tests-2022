@@ -3,13 +3,10 @@ package com.example.pages;
 import org.openqa.selenium.By;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.refresh;
 
 public class FeedPage {
     public static String url = "https://ok.ru/feed";
