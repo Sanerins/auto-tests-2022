@@ -12,7 +12,7 @@ public class PublishPostTest extends BaseTest {
     private static final String QUOTE = "Если волк молчит, лучше его не перебивать.";
 
     @Test
-    void publishPost() throws IOException {
+    public void publishPost() throws IOException {
         FeedPage feedPage = authorize().publishPost(QUOTE);
         assertThat(feedPage.checkWhetherPostWithTextDisplayed(QUOTE)).isTrue();
     }

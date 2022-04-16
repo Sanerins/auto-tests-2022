@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LikeTest extends BaseTest {
     @Test
-    void setLike() throws IOException {
+    public void setLike() throws IOException {
         FeedPage feedPage = authorize();
         feedPage.unlikeFirstFeedBlock();
 

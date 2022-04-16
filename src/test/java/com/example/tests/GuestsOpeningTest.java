@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class GuestsOpeningTest extends BaseTest {
     @Test
-    void openGuests() throws IOException {
+    public void openGuests() throws IOException {
         authorize().openGuests();
         assertThat(GuestsPage.isOpen()).isTrue();
     }

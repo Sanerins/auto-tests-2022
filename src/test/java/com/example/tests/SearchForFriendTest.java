@@ -4,18 +4,17 @@ import com.example.pages.FeedPage;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class SearchForFriendTest extends BaseTest {
+public class SearchForFriendTest extends BaseTest {
 
     @ParameterizedTest
     @MethodSource("provideNonExistentFriends")
-    void findNonExistentFriendTest(String nonExistentFriendName) throws IOException {
+    public void findNonExistentFriendTest(String nonExistentFriendName) throws IOException {
         authorize();
         assertThat(new FeedPage()
                 .openFriends()

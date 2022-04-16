@@ -8,9 +8,9 @@ import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class NotificationsOpeningTest extends BaseTest {
+public class NotificationsOpeningTest extends BaseTest {
     @Test
-    void openNotifications() throws IOException {
+    public void openNotifications() throws IOException {
         authorize().openNotifications();
         assertThat(NotificationsPage.isOpen()).isTrue();
     }

@@ -8,9 +8,9 @@ import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LoginTest extends BaseTest {
+public class LoginTest extends BaseTest {
     @Test
-    void loginTest() throws IOException {
+    public void loginTest() throws IOException {
         authorize();
         assertThat(FeedPage.isOpen()).isTrue();
     }
