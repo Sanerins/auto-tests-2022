@@ -14,7 +14,6 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 
 public abstract class BaseTest {
-    protected static User user;
     private static final String BASE_URL = "https://ok.ru";
 
     static User createUser() throws IOException {
