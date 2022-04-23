@@ -42,10 +42,6 @@ public class FeedPage {
         return FEED_NAV_BAR.logout();
     }
 
-    public static String getURL() {
-        return URL;
-    }
-
     public MessagesPage openMessages() {
         return FEED_NAV_BAR.openMessages();
     }

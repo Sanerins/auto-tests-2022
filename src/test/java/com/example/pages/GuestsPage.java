@@ -23,8 +23,4 @@ public class GuestsPage {
     public boolean isOpen() {
         return GUESTS_HEADER.isDisplayed();
     }
-
-    public static String getURL() {
-        return URL;
-    }
 }

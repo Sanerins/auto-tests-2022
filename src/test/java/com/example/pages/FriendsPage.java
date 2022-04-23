@@ -21,10 +21,6 @@ public class FriendsPage {
         return new FriendsPage();
     }
 
-    public boolean isOpen() {
-        return FRIENDS_SEARCH_FIELD.isDisplayed();
-    }
-
     public SearchFriendsPage searchPerson(String input) {
         char[] chars = input.toCharArray();
         for (char letter : chars) {

@@ -31,12 +31,4 @@ public class LoginPage {
         LOGIN_BUTTON.shouldBe(visible).click();
         return new FeedPage();
     }
-
-    public static String getURL() {
-        return url;
-    }
-
-    public boolean isOpen() {
-        return LOGIN_FORM.isDisplayed();
-    }
 }

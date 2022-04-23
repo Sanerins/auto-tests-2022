@@ -12,6 +12,7 @@ public class LoginTest extends BaseTest {
     @Tag("Likes")
     @DisplayName("Likes test")
     public void loginTest() {
-        assertThat(FeedPage.isOpen()).isTrue();
+        FeedPage feedPage = FeedPage.openPage();
+        assertThat(feedPage.isOpen()).isTrue();
     }
 }

@@ -24,8 +24,4 @@ public class NotificationsPage {
     public boolean isOpen() {
         return NOTIFICATIONS_HEADER.isDisplayed();
     }
-
-    public static String getURL() {
-        return URL;
-    }
 }
