@@ -51,7 +51,7 @@ public class FeedPage {
     }
 
     public FriendsPage openFriends() {
-        FRIENDS_LINK.click();
+        FRIENDS_LINK.shouldBe(visible).click();
         return new FriendsPage();
     }
 
@@ -79,7 +79,7 @@ public class FeedPage {
     }
 
     public void likeFirstFeedBlock() {
-        LIKE_BTN.click();
+        LIKE_BTN.shouldBe(visible).click();
         LIKE_BTN.shouldHave(attribute("class", "widget  __active __wide-count"));
     }
 
@@ -92,17 +92,16 @@ public class FeedPage {
     }
 
     public FeedPage publishPost(String quote) {
-        OPEN_POSTING_MENU_BTN.click();
-        INPUT_POST_TEXT_FORM.shouldBe(visible);
-        INPUT_POST_TEXT_FORM.clear();
+        OPEN_POSTING_MENU_BTN.shouldBe(visible).click();
+        INPUT_POST_TEXT_FORM.shouldBe(visible).clear();
         INPUT_POST_TEXT_FORM.setValue(quote);
-        BEST_BACKGROUND.click();
-        SUBMIT_POST_BTN.click();
+        BEST_BACKGROUND.shouldBe(visible).click();
+        SUBMIT_POST_BTN.shouldBe(visible).click();
         return this;
     }
 
     public boolean checkWhetherPostWithTextDisplayed(String text) {
-        return FIRST_POST_FROM_FEED.innerText().equals(text);
+        return FIRST_POST_FROM_FEED.shouldBe(visible).innerText().equals(text);
     }
 
     private static class HeaderBar {
