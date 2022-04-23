@@ -40,8 +40,8 @@ public abstract class BaseTest {
         closeWebDriver();
     }
 
-    protected static FeedPage authorize() throws IOException {
-        return LoginPage.openPage()
+    protected static void authorize() throws IOException {
+        LoginPage.openPage()
                 .login(createUser());
     }
 
