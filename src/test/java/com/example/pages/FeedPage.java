@@ -1,9 +1,10 @@
 package com.example.pages;
 
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
@@ -29,7 +30,7 @@ public class FeedPage {
             = $(byXpath("//*[contains(@class, 'feed-list')]//*[contains(@class, 'media-text_cnt_tx')]"));;
 
     public FeedPage() {
-        FEED_NAV_BAR.CONTENT.shouldBe(Condition.visible);
+        FEED_NAV_BAR.CONTENT.shouldBe(visible);
     }
 
     public static FeedPage openPage() {
@@ -79,7 +80,7 @@ public class FeedPage {
 
     public void likeFirstFeedBlock() {
         LIKE_BTN.click();
-        LIKE_BTN.shouldHave(Condition.attribute("class", "widget  __active __wide-count"));
+        LIKE_BTN.shouldHave(attribute("class", "widget  __active __wide-count"));
     }
 
     private static boolean containsClass(SelenideElement element, String className) {
@@ -92,7 +93,7 @@ public class FeedPage {
 
     public FeedPage publishPost(String quote) {
         OPEN_POSTING_MENU_BTN.click();
-        INPUT_POST_TEXT_FORM.shouldBe(Condition.visible);
+        INPUT_POST_TEXT_FORM.shouldBe(visible);
         INPUT_POST_TEXT_FORM.clear();
         INPUT_POST_TEXT_FORM.setValue(quote);
         BEST_BACKGROUND.click();
