@@ -20,10 +20,6 @@ public class MessagesPage {
         return new MessagesPage();
     }
 
-    public static String getURL() {
-        return url;
-    }
-
     public boolean isOpen() {
         return MESSAGE_BUTTON.isDisplayed();
     }
