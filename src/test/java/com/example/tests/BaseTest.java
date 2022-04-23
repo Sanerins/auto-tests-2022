@@ -1,15 +1,17 @@
 package com.example.tests;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+
 import com.codeborne.selenide.Configuration;
 import com.example.pages.FeedPage;
 import com.example.pages.LoginPage;
 import com.example.utils.User;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 

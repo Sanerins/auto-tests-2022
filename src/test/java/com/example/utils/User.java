@@ -10,6 +10,10 @@ public class User {
         this.password = password;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getLogin() {
         return login;
     }
@@ -32,10 +36,6 @@ public class User {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static class Builder {

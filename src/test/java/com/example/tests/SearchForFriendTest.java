@@ -1,16 +1,26 @@
 package com.example.tests;
 
-import com.example.pages.FeedPage;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.stream.Stream;
+import com.example.pages.FeedPage;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SearchForFriendTest extends BaseTest {
+
+    private static Stream<Arguments> provideNonExistentFriends() {
+        return Stream.of(
+                Arguments.of("Пивень"),
+                Arguments.of("ПивПивыч"),
+                Arguments.of("Пивчанский")
+        );
+    }
 
     @ParameterizedTest
     @Tag("Friends")
@@ -22,13 +32,5 @@ public class SearchForFriendTest extends BaseTest {
                 .openFriends()
                 .searchPerson(nonExistentFriendName)
                 .friendNotFound()).isTrue();
-    }
-
-    private static Stream<Arguments> provideNonExistentFriends() {
-        return Stream.of(
-                Arguments.of("Пивень"),
-                Arguments.of("ПивПивыч"),
-                Arguments.of("Пивчанский")
-        );
     }
 }

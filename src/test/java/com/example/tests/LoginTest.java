@@ -1,9 +1,10 @@
 package com.example.tests;
 
-import com.example.pages.FeedPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+
+import com.example.pages.FeedPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

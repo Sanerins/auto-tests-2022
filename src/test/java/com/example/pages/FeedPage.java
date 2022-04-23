@@ -10,9 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class FeedPage {
-    public static String URL = "https://ok.ru/feed";
     private static final HeaderBar FEED_NAV_BAR = new HeaderBar();
-    private final SelenideElement FRIENDS_LINK = $(byXpath("//*[contains(@data-l, 't,userFriend')]"));
     private static final SelenideElement LIKE_BTN
             = $(byXpath("//*[contains(@class, 'feed-w')][1]//*[@data-like-icon]/parent::*"));
     private static final SelenideElement LIKE_COUNT
@@ -26,7 +24,9 @@ public class FeedPage {
     private static final SelenideElement BEST_BACKGROUND
             = $(byXpath("//*[contains(@class, 'posting_cp_i js-color-picker-i js-color-picker-i-103')]"));
     private static final SelenideElement FIRST_POST_FROM_FEED
-            = $(byXpath("//*[contains(@class, 'feed-list')]//*[contains(@class, 'media-text_cnt_tx')]"));;
+            = $(byXpath("//*[contains(@class, 'feed-list')]//*[contains(@class, 'media-text_cnt_tx')]"));
+    public static String URL = "https://ok.ru/feed";
+    private final SelenideElement FRIENDS_LINK = $(byXpath("//*[contains(@data-l, 't,userFriend')]"));
 
     public FeedPage() {
         FEED_NAV_BAR.CONTENT.shouldBe(visible);
@@ -35,6 +35,14 @@ public class FeedPage {
     public static FeedPage openPage() {
         open(URL);
         return new FeedPage();
+    }
+
+    private static boolean containsClass(SelenideElement element, String className) {
+        String attributes = element.getAttribute("class");
+        if (attributes != null) {
+            return attributes.contains(className);
+        }
+        return false;
     }
 
     public LoginPage logout() {
@@ -62,7 +70,6 @@ public class FeedPage {
         return FEED_NAV_BAR.openNotifications();
     }
 
-
     public boolean isOpen() {
         return FEED_NAV_BAR.CONTENT.isDisplayed();
     }
@@ -82,14 +89,6 @@ public class FeedPage {
         LIKE_BTN.shouldHave(attribute("class", "widget  __active __wide-count"));
     }
 
-    private static boolean containsClass(SelenideElement element, String className) {
-        String attributes = element.getAttribute("class");
-        if (attributes != null) {
-            return attributes.contains(className);
-        }
-        return false;
-    }
-
     public FeedPage publishPost(String quote) {
         OPEN_POSTING_MENU_BTN.shouldBe(visible).click();
         INPUT_POST_TEXT_FORM.shouldBe(visible).clear();
@@ -104,15 +103,14 @@ public class FeedPage {
     }
 
     private static class HeaderBar {
-        public final SelenideElement CONTENT = $(byXpath("//div[contains(@data-l, 't,filter')]"));
-        private final SelenideElement MESSAGES_LINK = $(byXpath("//*[contains(@data-l, 't,messages')]"));
-        private final SelenideElement GUESTS_LINK = $(byXpath("//*[contains(@data-l, 't,guests')]"));
-
-        private final SelenideElement MUSIC_LINK = $(byXpath("//*[contains(@data-l, 't,music')]"));
         private static final SelenideElement NOTIFICATIONS_LINK = $(byXpath("//*[contains(@data-l, 't,notifications')]"));
         private static final SelenideElement MINI_USER_CARD = $(byXpath("//div[contains(@class, 'ucard-mini toolbar_ucard js-toolbar-menu')]"));
         private static final SelenideElement LOGOUT_LINK = $(byXpath("//a[@data-l='t,logout']"));
         private static final SelenideElement LOGOUT_CONFIRMATION = $(byId("hook_FormButton_logoff.confirm_not_decorate"));
+        public final SelenideElement CONTENT = $(byXpath("//div[contains(@data-l, 't,filter')]"));
+        private final SelenideElement MESSAGES_LINK = $(byXpath("//*[contains(@data-l, 't,messages')]"));
+        private final SelenideElement GUESTS_LINK = $(byXpath("//*[contains(@data-l, 't,guests')]"));
+        private final SelenideElement MUSIC_LINK = $(byXpath("//*[contains(@data-l, 't,music')]"));
 
         public MessagesPage openMessages() {
             MESSAGES_LINK.shouldBe(visible).click();

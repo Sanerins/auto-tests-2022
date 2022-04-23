@@ -8,8 +8,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class MessagesPage {
-    public static String url = "https://ok.ru/messages";
     private static final SelenideElement MESSAGE_BUTTON = $(byId("msg_toolbar_button"));
+    public static String url = "https://ok.ru/messages";
 
     public MessagesPage() {
         MESSAGE_BUTTON.shouldBe(visible);
