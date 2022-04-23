@@ -18,5 +18,6 @@ public class LikeTest extends BaseTest {
         feedPage.likeFirstFeedBlock();
 
         assertThat(feedPage.getLikeCount()).isEqualTo(initialLikeCount + 1);
+        feedPage.unlikeFirstFeedBlock();
     }
 }
