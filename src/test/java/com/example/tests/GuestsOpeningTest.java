@@ -13,7 +13,7 @@ public class GuestsOpeningTest extends BaseTest {
     @Tag("Guests")
     @DisplayName("Best guests test ever")
     public void openGuests() {
-        FeedPage.openPage().openGuests();
-        assertThat(GuestsPage.isOpen()).isTrue();
+        GuestsPage guestsPage = FeedPage.openPage().openGuests();
+        assertThat(guestsPage.isOpen()).isTrue();
     }
 }

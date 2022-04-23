@@ -13,7 +13,7 @@ public class MessageOpeningTest extends BaseTest {
     @Tag("Messages")
     @DisplayName("Open messages test")
     public void openMessages() {
-        FeedPage.openPage().openMessages();
-        assertThat(MessagesPage.isOpen()).isTrue();
+        MessagesPage messagesPage = FeedPage.openPage().openMessages();
+        assertThat(messagesPage.isOpen()).isTrue();
     }
 }

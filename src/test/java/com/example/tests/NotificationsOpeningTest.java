@@ -13,7 +13,7 @@ public class NotificationsOpeningTest extends BaseTest {
     @Tag("Notifications")
     @DisplayName("Open notifications test")
     public void openNotifications() {
-        FeedPage.openPage().openNotifications();
-        assertThat(NotificationsPage.isOpen()).isTrue();
+        NotificationsPage notificationsPage = FeedPage.openPage().openNotifications();
+        assertThat(notificationsPage.isOpen()).isTrue();
     }
 }
