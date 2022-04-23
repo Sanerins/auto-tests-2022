@@ -1,9 +1,9 @@
 package com.example.pages;
 
-
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
@@ -29,7 +29,7 @@ public class FeedPage {
             = $(byXpath("//*[contains(@class, 'feed-list')]//*[contains(@class, 'media-text_cnt_tx')]"));;
 
     public FeedPage() {
-        FEED_NAV_BAR.CONTENT.shouldBe(Condition.visible);
+        FEED_NAV_BAR.CONTENT.shouldBe(visible);
     }
 
     public static FeedPage openPage() {
@@ -41,16 +41,12 @@ public class FeedPage {
         return FEED_NAV_BAR.logout();
     }
 
-    public static String getURL() {
-        return URL;
-    }
-
     public MessagesPage openMessages() {
         return FEED_NAV_BAR.openMessages();
     }
 
     public FriendsPage openFriends() {
-        FRIENDS_LINK.click();
+        FRIENDS_LINK.shouldBe(visible).click();
         return new FriendsPage();
     }
 
@@ -67,7 +63,7 @@ public class FeedPage {
     }
 
 
-    public static boolean isOpen() {
+    public boolean isOpen() {
         return FEED_NAV_BAR.CONTENT.isDisplayed();
     }
 
@@ -82,8 +78,8 @@ public class FeedPage {
     }
 
     public void likeFirstFeedBlock() {
-        LIKE_BTN.click();
-        LIKE_BTN.shouldHave(Condition.attribute("class", "widget  __active __wide-count"));
+        LIKE_BTN.shouldBe(visible).click();
+        LIKE_BTN.shouldHave(attribute("class", "widget  __active __wide-count"));
     }
 
     private static boolean containsClass(SelenideElement element, String className) {
@@ -95,17 +91,16 @@ public class FeedPage {
     }
 
     public FeedPage publishPost(String quote) {
-        OPEN_POSTING_MENU_BTN.click();
-        INPUT_POST_TEXT_FORM.shouldBe(Condition.visible);
-        INPUT_POST_TEXT_FORM.clear();
+        OPEN_POSTING_MENU_BTN.shouldBe(visible).click();
+        INPUT_POST_TEXT_FORM.shouldBe(visible).clear();
         INPUT_POST_TEXT_FORM.setValue(quote);
-        BEST_BACKGROUND.click();
-        SUBMIT_POST_BTN.click();
+        BEST_BACKGROUND.shouldBe(visible).click();
+        SUBMIT_POST_BTN.shouldBe(visible).click();
         return this;
     }
 
     public boolean checkWhetherPostWithTextDisplayed(String text) {
-        return FIRST_POST_FROM_FEED.innerText().equals(text);
+        return FIRST_POST_FROM_FEED.shouldBe(visible).innerText().equals(text);
     }
 
     private static class HeaderBar {
@@ -120,12 +115,12 @@ public class FeedPage {
         private static final SelenideElement LOGOUT_CONFIRMATION = $(byId("hook_FormButton_logoff.confirm_not_decorate"));
 
         public MessagesPage openMessages() {
-            MESSAGES_LINK.click();
+            MESSAGES_LINK.shouldBe(visible).click();
             return new MessagesPage();
         }
 
         public GuestsPage openGuests() {
-            GUESTS_LINK.click();
+            GUESTS_LINK.shouldBe(visible).click();
             return new GuestsPage();
         }
 
@@ -135,14 +130,14 @@ public class FeedPage {
         }
 
         public NotificationsPage openNotifications() {
-            NOTIFICATIONS_LINK.click();
+            NOTIFICATIONS_LINK.shouldBe(visible).click();
             return new NotificationsPage();
         }
 
         public LoginPage logout() {
-            MINI_USER_CARD.click();
-            LOGOUT_LINK.click();
-            LOGOUT_CONFIRMATION.click();
+            MINI_USER_CARD.shouldBe(visible).click();
+            LOGOUT_LINK.shouldBe(visible).click();
+            LOGOUT_CONFIRMATION.shouldBe(visible).click();
             return LoginPage.openPage();
         }
     }

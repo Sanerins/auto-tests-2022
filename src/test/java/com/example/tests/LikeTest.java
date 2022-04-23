@@ -1,17 +1,18 @@
 package com.example.tests;
 
-import java.io.IOException;
-
+import com.example.pages.FeedPage;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import com.example.pages.FeedPage;
-
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LikeTest extends BaseTest {
     @Test
-    public void setLike() throws IOException {
-        FeedPage feedPage = authorize();
+    @Tag("Likes")
+    @DisplayName("Likes test")
+    public void setLike() {
+        FeedPage feedPage = FeedPage.openPage();
         feedPage.unlikeFirstFeedBlock();
 
         int initialLikeCount = feedPage.getLikeCount();

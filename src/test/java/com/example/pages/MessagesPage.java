@@ -1,8 +1,8 @@
 package com.example.pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -12,7 +12,7 @@ public class MessagesPage {
     private static final SelenideElement MESSAGE_BUTTON = $(byId("msg_toolbar_button"));
 
     public MessagesPage() {
-        MESSAGE_BUTTON.shouldBe(Condition.visible);
+        MESSAGE_BUTTON.shouldBe(visible);
     }
 
     public static MessagesPage openPage() {
@@ -20,11 +20,7 @@ public class MessagesPage {
         return new MessagesPage();
     }
 
-    public static String getURL() {
-        return url;
-    }
-
-    public static boolean isOpen() {
+    public boolean isOpen() {
         return MESSAGE_BUTTON.isDisplayed();
     }
 }

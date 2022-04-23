@@ -1,16 +1,19 @@
 package com.example.tests;
 
+import com.example.pages.FeedPage;
 import com.example.pages.GuestsPage;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class GuestsOpeningTest extends BaseTest {
     @Test
-    public void openGuests() throws IOException {
-        authorize().openGuests();
-        assertThat(GuestsPage.isOpen()).isTrue();
+    @Tag("Guests")
+    @DisplayName("Best guests test ever")
+    public void openGuests() {
+        GuestsPage guestsPage = FeedPage.openPage().openGuests();
+        assertThat(guestsPage.isOpen()).isTrue();
     }
 }
