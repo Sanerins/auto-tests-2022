@@ -26,9 +26,9 @@ public class LoginPage {
     }
 
     public FeedPage login(User user) {
-        EMAIL_FIELD.setValue(user.getLogin());
-        PASSWORD_FIELD.setValue(user.getPassword());
-        LOGIN_BUTTON.click();
+        EMAIL_FIELD.shouldBe(visible).setValue(user.getLogin());
+        PASSWORD_FIELD.shouldBe(visible).setValue(user.getPassword());
+        LOGIN_BUTTON.shouldBe(visible).click();
         return new FeedPage();
     }
 
