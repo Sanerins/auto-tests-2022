@@ -1,6 +1,5 @@
 package com.example.pages;
 
-
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.attribute;
