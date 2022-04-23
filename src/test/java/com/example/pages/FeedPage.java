@@ -115,24 +115,24 @@ public class FeedPage {
         private static final SelenideElement LOGOUT_CONFIRMATION = $(byId("hook_FormButton_logoff.confirm_not_decorate"));
 
         public MessagesPage openMessages() {
-            MESSAGES_LINK.click();
+            MESSAGES_LINK.shouldBe(visible).click();
             return new MessagesPage();
         }
 
         public GuestsPage openGuests() {
-            GUESTS_LINK.click();
+            GUESTS_LINK.shouldBe(visible).click();
             return new GuestsPage();
         }
 
         public NotificationsPage openNotifications() {
-            NOTIFICATIONS_LINK.click();
+            NOTIFICATIONS_LINK.shouldBe(visible).click();
             return new NotificationsPage();
         }
 
         public LoginPage logout() {
-            MINI_USER_CARD.click();
-            LOGOUT_LINK.click();
-            LOGOUT_CONFIRMATION.click();
+            MINI_USER_CARD.shouldBe(visible).click();
+            LOGOUT_LINK.shouldBe(visible).click();
+            LOGOUT_CONFIRMATION.shouldBe(visible).click();
             return LoginPage.openPage();
         }
     }
