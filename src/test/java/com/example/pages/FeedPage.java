@@ -64,7 +64,7 @@ public class FeedPage {
     }
 
 
-    public static boolean isOpen() {
+    public boolean isOpen() {
         return FEED_NAV_BAR.CONTENT.isDisplayed();
     }
 

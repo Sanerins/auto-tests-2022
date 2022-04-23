@@ -36,7 +36,7 @@ public class LoginPage {
         return url;
     }
 
-    public static boolean isOpen() {
+    public boolean isOpen() {
         return LOGIN_FORM.isDisplayed();
     }
 }

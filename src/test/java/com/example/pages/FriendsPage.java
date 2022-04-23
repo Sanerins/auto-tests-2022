@@ -21,7 +21,7 @@ public class FriendsPage {
         return new FriendsPage();
     }
 
-    public static boolean isOpen() {
+    public boolean isOpen() {
         return FRIENDS_SEARCH_FIELD.isDisplayed();
     }
 

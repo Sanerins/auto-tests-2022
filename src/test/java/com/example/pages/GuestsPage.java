@@ -20,7 +20,7 @@ public class GuestsPage {
         return new GuestsPage();
     }
 
-    public static boolean isOpen() {
+    public boolean isOpen() {
         return GUESTS_HEADER.isDisplayed();
     }
 

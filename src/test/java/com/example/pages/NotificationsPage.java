@@ -21,7 +21,7 @@ public class NotificationsPage {
         return new NotificationsPage();
     }
 
-    public static boolean isOpen() {
+    public boolean isOpen() {
         return NOTIFICATIONS_HEADER.isDisplayed();
     }
 

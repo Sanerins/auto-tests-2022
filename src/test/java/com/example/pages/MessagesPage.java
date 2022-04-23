@@ -24,7 +24,7 @@ public class MessagesPage {
         return url;
     }
 
-    public static boolean isOpen() {
+    public boolean isOpen() {
         return MESSAGE_BUTTON.isDisplayed();
     }
 }
