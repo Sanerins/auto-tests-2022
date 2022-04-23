@@ -1,5 +1,6 @@
 package com.example.pages;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
 
@@ -13,9 +14,11 @@ public class MusicPage {
             = $(byXpath("//*[contains(@data-tsid, 'best_match_artist_name')]"));
 
 
-    public MusicPage findMusic(String musicName) {
+    public MusicPage findArtist(String musicName) {
         INPUT_FIND_MUSIC.click();
-        INPUT_FIND_MUSIC.sendKeys(musicName + Keys.ENTER);
+        INPUT_FIND_MUSIC.sendKeys(musicName);
+        Selenide.sleep(100);
+        INPUT_FIND_MUSIC.sendKeys(Keys.ENTER);
         return this;
     }
 
