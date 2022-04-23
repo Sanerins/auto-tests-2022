@@ -2,14 +2,14 @@ package com.example.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class MessagesPage {
     public static String url = "https://ok.ru/messages";
-    private static final SelenideElement MESSAGE_BUTTON = $(By.id("msg_toolbar_button"));
+    private static final SelenideElement MESSAGE_BUTTON = $(byId("msg_toolbar_button"));
 
     public MessagesPage() {
         MESSAGE_BUTTON.shouldBe(Condition.visible);

@@ -3,14 +3,14 @@ package com.example.pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class FriendsPage {
     public static String url = "https://ok.ru/friends";
-    private static final SelenideElement FRIENDS_SEARCH_FIELD = $(By.xpath("//input[@accesskey='s']"));
+    private static final SelenideElement FRIENDS_SEARCH_FIELD = $(byXpath("//input[@accesskey='s']"));
 
     public FriendsPage() {
         FRIENDS_SEARCH_FIELD.shouldBe(Condition.visible);
