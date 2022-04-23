@@ -10,16 +10,8 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class FeedPage {
     public static String URL = "https://ok.ru/feed";
-    private static final SelenideElement FEED_NAV_BAR = $(By.xpath("//div[contains(@data-l, 't,filter')]"));
-    private static final SelenideElement FRIENDS_LINK = $(By.xpath("//*[contains(@data-l, 't,friends')]"));
-    private static final SelenideElement MESSAGES_LINK = $(By.xpath("//*[contains(@data-l, 't,messages')]"));
-    private static final SelenideElement GUESTS_LINK = $(By.xpath("//*[contains(@data-l, 't,guests')]"));
-    private static final SelenideElement NOTIFICATIONS_LINK = $(By.xpath("//*[contains(@data-l, 't,notifications')]"));
-    private static final SelenideElement MINI_USER_CARD =
-            $(By.xpath("//div[contains(@class, 'ucard-mini toolbar_ucard js-toolbar-menu')]"));
-    private static final SelenideElement LOGOUT_LINK = $(By.xpath("//a[@data-l='t,logout']"));
-    private static final SelenideElement LOGOUT_CONFIRMATION =
-            $(By.id("hook_FormButton_logoff.confirm_not_decorate"));
+    private static final HeaderBar FEED_NAV_BAR = new HeaderBar();
+    private final SelenideElement FRIENDS_LINK = $(By.xpath("//*[contains(@data-l, 't,userFriend')]"));
     private static final SelenideElement LIKE_BTN
             = $(By.xpath("//*[contains(@class, 'feed-w')][1]//*[@data-like-icon]/parent::*"));
     private static final SelenideElement LIKE_COUNT
@@ -36,7 +28,7 @@ public class FeedPage {
             = $(By.xpath("//*[contains(@class, 'feed-list')]//*[contains(@class, 'media-text_cnt_tx')]"));;
 
     public FeedPage() {
-        FEED_NAV_BAR.shouldBe(Condition.visible);
+        FEED_NAV_BAR.CONTENT.shouldBe(Condition.visible);
     }
 
     public static FeedPage openPage() {
@@ -45,10 +37,7 @@ public class FeedPage {
     }
 
     public LoginPage logout() {
-        MINI_USER_CARD.click();
-        LOGOUT_LINK.click();
-        LOGOUT_CONFIRMATION.click();
-        return LoginPage.openPage();
+        return FEED_NAV_BAR.logout();
     }
 
     public static String getURL() {
@@ -56,8 +45,7 @@ public class FeedPage {
     }
 
     public MessagesPage openMessages() {
-        MESSAGES_LINK.click();
-        return new MessagesPage();
+        return FEED_NAV_BAR.openMessages();
     }
 
     public FriendsPage openFriends() {
@@ -66,18 +54,16 @@ public class FeedPage {
     }
 
     public GuestsPage openGuests() {
-        GUESTS_LINK.click();
-        return new GuestsPage();
+        return FEED_NAV_BAR.openGuests();
     }
 
     public NotificationsPage openNotifications() {
-        NOTIFICATIONS_LINK.click();
-        return new NotificationsPage();
+        return FEED_NAV_BAR.openNotifications();
     }
 
 
     public static boolean isOpen() {
-        return FEED_NAV_BAR.isDisplayed();
+        return FEED_NAV_BAR.CONTENT.isDisplayed();
     }
 
     public int getLikeCount() {
@@ -115,5 +101,37 @@ public class FeedPage {
 
     public boolean checkWhetherPostWithTextDisplayed(String text) {
         return FIRST_POST_FROM_FEED.innerText().equals(text);
+    }
+
+    private static class HeaderBar {
+        public final SelenideElement CONTENT = $(By.xpath("//div[contains(@data-l, 't,filter')]"));
+        private final SelenideElement MESSAGES_LINK = $(By.xpath("//*[contains(@data-l, 't,messages')]"));
+        private final SelenideElement GUESTS_LINK = $(By.xpath("//*[contains(@data-l, 't,guests')]"));
+        private static final SelenideElement NOTIFICATIONS_LINK = $(By.xpath("//*[contains(@data-l, 't,notifications')]"));
+        private static final SelenideElement MINI_USER_CARD = $(By.xpath("//div[contains(@class, 'ucard-mini toolbar_ucard js-toolbar-menu')]"));
+        private static final SelenideElement LOGOUT_LINK = $(By.xpath("//a[@data-l='t,logout']"));
+        private static final SelenideElement LOGOUT_CONFIRMATION = $(By.id("hook_FormButton_logoff.confirm_not_decorate"));
+
+        public MessagesPage openMessages() {
+            MESSAGES_LINK.click();
+            return new MessagesPage();
+        }
+
+        public GuestsPage openGuests() {
+            GUESTS_LINK.click();
+            return new GuestsPage();
+        }
+
+        public NotificationsPage openNotifications() {
+            NOTIFICATIONS_LINK.click();
+            return new NotificationsPage();
+        }
+
+        public LoginPage logout() {
+            MINI_USER_CARD.click();
+            LOGOUT_LINK.click();
+            LOGOUT_CONFIRMATION.click();
+            return LoginPage.openPage();
+        }
     }
 }
