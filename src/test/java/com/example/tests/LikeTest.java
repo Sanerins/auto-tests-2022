@@ -10,8 +10,8 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LikeTest extends BaseTest {
     @Test
-    public void setLike() throws IOException {
-        FeedPage feedPage = authorize();
+    public void setLike() {
+        FeedPage feedPage = FeedPage.openPage();
         feedPage.unlikeFirstFeedBlock();
 
         int initialLikeCount = feedPage.getLikeCount();
