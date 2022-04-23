@@ -1,10 +1,10 @@
 package com.example.pages;
 
-import org.openqa.selenium.By;
-
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -36,7 +36,7 @@ public class FeedPage {
             = $(By.xpath("//*[contains(@class, 'feed-list')]//*[contains(@class, 'media-text_cnt_tx')]"));;
 
     public FeedPage() {
-        FEED_NAV_BAR.shouldBe(Condition.visible);
+        FEED_NAV_BAR.shouldBe(visible);
     }
 
     public static FeedPage openPage() {
@@ -105,7 +105,7 @@ public class FeedPage {
 
     public FeedPage publishPost(String quote) {
         OPEN_POSTING_MENU_BTN.click();
-        INPUT_POST_TEXT_FORM.shouldBe(Condition.visible);
+        INPUT_POST_TEXT_FORM.shouldBe(visible);
         INPUT_POST_TEXT_FORM.clear();
         INPUT_POST_TEXT_FORM.setValue(quote);
         BEST_BACKGROUND.click();

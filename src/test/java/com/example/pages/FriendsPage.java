@@ -1,10 +1,10 @@
 package com.example.pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -13,7 +13,7 @@ public class FriendsPage {
     private static final SelenideElement FRIENDS_SEARCH_FIELD = $(By.xpath("//input[@accesskey='s']"));
 
     public FriendsPage() {
-        FRIENDS_SEARCH_FIELD.shouldBe(Condition.visible);
+        FRIENDS_SEARCH_FIELD.shouldBe(visible);
     }
 
     public FriendsPage openPage() {

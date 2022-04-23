@@ -30,7 +30,6 @@ public abstract class BaseTest {
 
     @BeforeAll
     public static void init() {
-        closeWebDriver();
         Configuration.baseUrl = BASE_URL;
         open("/");
     }

@@ -1,10 +1,10 @@
 package com.example.pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.example.utils.User;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -16,7 +16,7 @@ public class LoginPage {
     private static final SelenideElement LOGIN_BUTTON = $(By.xpath("//input[@data-l='t,sign_in']"));
 
     public LoginPage() {
-        LOGIN_FORM.shouldBe(Condition.visible);
+        LOGIN_FORM.shouldBe(visible);
     }
 
     public static LoginPage openPage() {
