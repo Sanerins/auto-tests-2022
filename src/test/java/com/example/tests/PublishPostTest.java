@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PublishPostTest extends BaseTest {
@@ -14,8 +13,8 @@ public class PublishPostTest extends BaseTest {
     @Test
     @Tag("Posts")
     @DisplayName("Publish post test")
-    public void publishPost() throws IOException {
-        FeedPage feedPage = authorize().publishPost(QUOTE);
+    public void publishPost() {
+        FeedPage feedPage = FeedPage.openPage().publishPost(QUOTE);
         assertThat(feedPage.checkWhetherPostWithTextDisplayed(QUOTE)).isTrue();
     }
 }

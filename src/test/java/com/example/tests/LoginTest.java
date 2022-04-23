@@ -5,15 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginTest extends BaseTest {
     @Test
-    @Tag("Login")
-    @DisplayName("Login test")
-    public void loginTest() throws IOException {
-        authorize();
+    @Tag("Likes")
+    @DisplayName("Likes test")
+    public void loginTest() {
         assertThat(FeedPage.isOpen()).isTrue();
     }
 }

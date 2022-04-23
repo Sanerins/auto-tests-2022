@@ -28,13 +28,15 @@ public abstract class BaseTest {
     }
 
     @BeforeAll
-    public static void init() {
+    public static void init() throws IOException {
         Configuration.baseUrl = BASE_URL;
         open("/");
+        authorize();
     }
 
     @AfterAll
     public static void close() {
+        logOff();
         closeWebDriver();
     }
 

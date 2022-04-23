@@ -18,12 +18,11 @@ public class SearchForFriendTest extends BaseTest {
     @DisplayName("Find non existent friends test")
     @MethodSource("provideNonExistentFriends")
     public void findNonExistentFriendTest(String nonExistentFriendName) throws IOException {
-        authorize();
+        FeedPage.openPage();
         assertThat(new FeedPage()
                 .openFriends()
                 .searchPerson(nonExistentFriendName)
                 .friendNotFound()).isTrue();
-        logOff();
     }
 
     private static Stream<Arguments> provideNonExistentFriends() {
