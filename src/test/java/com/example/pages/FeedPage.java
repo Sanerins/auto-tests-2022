@@ -54,6 +54,10 @@ public class FeedPage {
         return FEED_NAV_BAR.openGuests();
     }
 
+    public MusicPage openMusic() {
+        return FEED_NAV_BAR.openMusic();
+    }
+
     public NotificationsPage openNotifications() {
         return FEED_NAV_BAR.openNotifications();
     }
@@ -103,6 +107,8 @@ public class FeedPage {
         public final SelenideElement CONTENT = $(byXpath("//div[contains(@data-l, 't,filter')]"));
         private final SelenideElement MESSAGES_LINK = $(byXpath("//*[contains(@data-l, 't,messages')]"));
         private final SelenideElement GUESTS_LINK = $(byXpath("//*[contains(@data-l, 't,guests')]"));
+
+        private final SelenideElement MUSIC_LINK = $(byXpath("//*[contains(@data-l, 't,music')]"));
         private static final SelenideElement NOTIFICATIONS_LINK = $(byXpath("//*[contains(@data-l, 't,notifications')]"));
         private static final SelenideElement MINI_USER_CARD = $(byXpath("//div[contains(@class, 'ucard-mini toolbar_ucard js-toolbar-menu')]"));
         private static final SelenideElement LOGOUT_LINK = $(byXpath("//a[@data-l='t,logout']"));
@@ -116,6 +122,11 @@ public class FeedPage {
         public GuestsPage openGuests() {
             GUESTS_LINK.shouldBe(visible).click();
             return new GuestsPage();
+        }
+
+        public MusicPage openMusic() {
+            MUSIC_LINK.click();
+            return new MusicPage();
         }
 
         public NotificationsPage openNotifications() {
