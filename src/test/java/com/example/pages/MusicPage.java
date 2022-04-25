@@ -18,7 +18,6 @@ public class MusicPage {
     public MusicPage findArtist(String musicName) {
         INPUT_FIND_MUSIC.click();
         INPUT_FIND_MUSIC.sendKeys(musicName);
-        Selenide.sleep(100);
         INPUT_FIND_MUSIC.sendKeys(Keys.ENTER);
         return this;
     }

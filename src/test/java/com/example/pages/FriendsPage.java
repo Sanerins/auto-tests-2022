@@ -28,7 +28,6 @@ public class FriendsPage {
             Selenide.sleep(50);
         }
         FRIENDS_SEARCH_FIELD.pressEnter();
-        Selenide.sleep(100);
         return new SearchFriendsPage();
     }
 }
