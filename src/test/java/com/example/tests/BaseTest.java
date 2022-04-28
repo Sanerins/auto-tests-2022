@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
@@ -18,7 +20,7 @@ import static com.codeborne.selenide.Selenide.open;
 public abstract class BaseTest {
     private static final String BASE_URL = "https://ok.ru";
 
-    static User createUser() throws IOException {
+    protected static User createUser() throws IOException {
         //Создайте credentials.txt перед запуском
         //1 строка - логин
         //2 строка - пароль
@@ -40,17 +42,11 @@ public abstract class BaseTest {
         closeWebDriver();
     }
 
-//    protected static void authorize() throws IOException {
-//        LoginPage.openPage()
-//                .login(createUser());
-//    }
-//
-//    protected static void logOff() {
-//        FeedPage.openPage()
-//                .logout();
-//    }
+    protected static void authorize(User user) throws IOException {
+        new LoginPage().login(user);
+    }
 
-    protected void goToUrl(String url) {
-        open(url);
+    protected static void logOff() {
+        new FeedPage().logout();
     }
 }

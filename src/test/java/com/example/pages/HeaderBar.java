@@ -37,10 +37,10 @@ public class HeaderBar {
         return new NotificationsPage();
     }
 
-//    public LoginPage logout() {
-//        MINI_USER_CARD.shouldBe(visible).click();
-//        LOGOUT_LINK.shouldBe(visible).click();
-//        LOGOUT_CONFIRMATION.shouldBe(visible).click();
-//        return LoginPage.openPage();
-//    }
+    public LoginPage logout() {
+        MINI_USER_CARD.shouldBe(visible).click();
+        LOGOUT_LINK.shouldBe(visible).click();
+        LOGOUT_CONFIRMATION.shouldBe(visible).click();
+        return new LoginPage();
+    }
 }
