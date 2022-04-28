@@ -35,9 +35,9 @@ public class FeedPage implements Page {
         return false;
     }
 
-    public LoginPage logout() {
-        return FEED_NAV_BAR.logout();
-    }
+//    public LoginPage logout() {
+//        return FEED_NAV_BAR.logout();
+//    }
 
     public MessagesPage openMessages() {
         return FEED_NAV_BAR.openMessages();
