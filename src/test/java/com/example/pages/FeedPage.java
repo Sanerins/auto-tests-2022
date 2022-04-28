@@ -6,14 +6,14 @@ import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
-public class FeedPage {
+public class FeedPage implements Page {
     private static final HeaderBar FEED_NAV_BAR = new HeaderBar();
     private static final SelenideElement LIKE_BTN
             = $(byXpath("//*[contains(@class, 'feed-w')][1]//*[@data-like-icon]/parent::*"));
     private static final SelenideElement LIKE_COUNT
-            = $(byXpath("//*[contains(@class, 'feed-w')][1]//*[@data-like-icon]//*[contains(@class, 'widget_count')]"));
+            = $(byXpath(
+            "//*[contains(@class, 'feed-w')][1]//*[@data-like-icon]//*[contains(@class, 'widget_count')]"));
     private static final SelenideElement OPEN_POSTING_MENU_BTN
             = $(byXpath("//*[contains(@class, 'pf-head __colored-svg')]"));
     private static final SelenideElement INPUT_POST_TEXT_FORM
@@ -24,17 +24,8 @@ public class FeedPage {
             = $(byXpath("//*[contains(@class, 'posting_cp_i js-color-picker-i js-color-picker-i-103')]"));
     private static final SelenideElement FIRST_POST_FROM_FEED
             = $(byXpath("//*[contains(@class, 'feed-list')]//*[contains(@class, 'media-text_cnt_tx')]"));
-    public static String URL = "https://ok.ru/feed";
+    public static final String URL = "https://ok.ru/feed";
     private final SelenideElement FRIENDS_LINK = $(byXpath("//*[contains(@data-l, 't,userFriend')]"));
-
-    public FeedPage() {
-        FEED_NAV_BAR.CONTENT.shouldBe(visible);
-    }
-
-    public static FeedPage openPage() {
-        open(URL);
-        return new FeedPage();
-    }
 
     private static boolean containsClass(SelenideElement element, String className) {
         String attributes = element.getAttribute("class");
@@ -44,9 +35,9 @@ public class FeedPage {
         return false;
     }
 
-    public LoginPage logout() {
-        return FEED_NAV_BAR.logout();
-    }
+//    public LoginPage logout() {
+//        return FEED_NAV_BAR.logout();
+//    }
 
     public MessagesPage openMessages() {
         return FEED_NAV_BAR.openMessages();
@@ -99,5 +90,13 @@ public class FeedPage {
 
     public boolean checkWhetherPostWithTextDisplayed(String text) {
         return FIRST_POST_FROM_FEED.shouldBe(visible).innerText().equals(text);
+    }
+
+    public String getURL() {
+        return URL;
+    }
+
+    public void await() {
+        FEED_NAV_BAR.CONTENT.shouldBe(visible);
     }
 }

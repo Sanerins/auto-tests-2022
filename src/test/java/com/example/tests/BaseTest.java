@@ -33,24 +33,22 @@ public abstract class BaseTest {
     public static void init() throws IOException {
         Configuration.baseUrl = BASE_URL;
         open("/");
-        authorize();
     }
 
     @AfterAll
     public static void close() {
-        logOff();
         closeWebDriver();
     }
 
-    protected static void authorize() throws IOException {
-        LoginPage.openPage()
-                .login(createUser());
-    }
-
-    protected static void logOff() {
-        FeedPage.openPage()
-                .logout();
-    }
+//    protected static void authorize() throws IOException {
+//        LoginPage.openPage()
+//                .login(createUser());
+//    }
+//
+//    protected static void logOff() {
+//        FeedPage.openPage()
+//                .logout();
+//    }
 
     protected void goToUrl(String url) {
         open(url);
