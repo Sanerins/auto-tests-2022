@@ -51,8 +51,4 @@ public abstract class BaseTest {
         FeedPage.openPage()
                 .logout();
     }
-
-    protected void goToUrl(String url) {
-        open(url);
-    }
 }
