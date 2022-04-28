@@ -8,18 +8,9 @@ import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class FriendsPage {
+public class FriendsPage implements Page {
     private static final SelenideElement FRIENDS_SEARCH_FIELD = $(byXpath("//input[@accesskey='s']"));
-    public static String url = "https://ok.ru/friends";
-
-    public FriendsPage() {
-        FRIENDS_SEARCH_FIELD.shouldBe(visible);
-    }
-
-    public FriendsPage openPage() {
-        open(url);
-        return new FriendsPage();
-    }
+    public static final String URL = "https://ok.ru/friends";
 
     public SearchFriendsPage searchPerson(String input) {
         char[] chars = input.toCharArray();
@@ -35,6 +26,14 @@ public class FriendsPage {
         }
         FRIENDS_SEARCH_FIELD.pressEnter();
         return new SearchFriendsPage();
+    }
+
+    public void await() {
+        FRIENDS_SEARCH_FIELD.shouldBe(visible);
+    }
+
+    public String getURL() {
+        return URL;
     }
 }
 
